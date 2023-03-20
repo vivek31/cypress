@@ -15,5 +15,10 @@ module.exports = defineConfig({
         await afterRunHook();
       });
     },
+    env: {
+      "baseUrl": "https://trinity.minutecrew.com",
+       "username": "qa.admin",
+       "password": "Nextcrew@1"
+    }
   },
 });
