@@ -1,4 +1,4 @@
-import Login from '../pages/login_page_obj'
+import Login from '../pages/login'
 
 describe('Login to the Application', () => {
     Cypress.on('uncaught:exception', () => {
@@ -8,7 +8,7 @@ describe('Login to the Application', () => {
 
         cy.viewport(1400,850)  
 
-        const login =new Login()
+        const login = new Login()
 
         login.visitUrl()
         login.actionVerifySignInPage()
