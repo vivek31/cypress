@@ -2,11 +2,11 @@ import Login from '../pages/login'
 import CreateJobOrder from '../pages/createNewJobOrder'
 import CreateJob from '../pages/createJob';
 
-describe('Assign a job', () => {
+describe('Make Job offer', () => {
     Cypress.on('uncaught:exception', () => {
       return false;
     });
-    it('Assign job', () => {
+    it('New job', () => {
 
         cy.viewport(1400,850)  
 
@@ -24,6 +24,6 @@ describe('Assign a job', () => {
         login.actionVerifyLogInAsAdmin()
         joborder.actionCreateNewJobOrder(jobtitle)
         job.actionCreateNewJob()
-        job.actionAssignJob()
+        job.makeJobOffer()
     });
 });

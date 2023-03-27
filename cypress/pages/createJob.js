@@ -11,6 +11,7 @@ class CreateJob {
     checkbox= "(//input[@name='provider-choice'])[1]";
     assignBtn= "//span[text()='Assign']";
     updateBtn= "//button[@id='cmdPost']";
+    makeOfferBtn= "//span[text()='Make Offer']";
   
     actionCreateNewJob(){
       cy.log('Action: User is able to create new job')
@@ -52,6 +53,25 @@ class CreateJob {
       .should('be.visible')
       .click()
 
+    }
+    makeJobOffer(){
+      cy.log('Action: Make a job offer')
+      cy.xpath(this.editBtn)
+      .should('be.visible')
+      .click()
+      cy.xpath(this.anywhereCheckbox)
+      .should('be.visible')
+      .click()
+      cy.xpath(this.inviteBtn).scrollIntoView()
+      .click()
+      .wait(5000)
+      cy.xpath(this.checkbox)
+      .click()
+      cy.xpath(this.makeOfferBtn)
+      .click()
+      cy.xpath(this.updateBtn)
+      .should('be.visible')
+      .click()
     }
   }
   export default CreateJob;
