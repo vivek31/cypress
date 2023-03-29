@@ -6,12 +6,14 @@ class CreateJob {
     plusIcon= "//img[@class='f-right']";
     verifyCreatedJob= "//span[text()='Successfully added job!']";
     editBtn= "//img[@title='Edit Detail']";
-    anywhereCheckbox= "//label[@for='work-location-anywhere']";
+    anywhereCheckbox= "//label[@for='work-location-anywhere']/../input[2]";
     inviteBtn= "//button[@id='open-providers-dialog']";
-    checkbox= "(//input[@name='provider-choice'])[1]";
-    assignBtn= "//span[text()='Assign']";
+    checkbox= "//div[@class='selectall']/input";
+    assignBtn= "(//span[text()='Assign'])[2]";
     updateBtn= "//button[@id='cmdPost']";
     makeOfferBtn= "//span[text()='Make Offer']";
+    searchClient= "//input[@id='provider-search']";
+    goBtn= "//button[@id='provider-search-btn']";
   
     actionCreateNewJob(){
       cy.log('Action: User is able to create new job')
@@ -35,20 +37,26 @@ class CreateJob {
     }
     actionAssignJob(){
       cy.log('Action: Assigned the job')
-      cy.xpath(this.editBtn)
+      cy.xpath(this.editBtn).scrollIntoView()
       .should('be.visible')
       .click()
+      .wait(3000)
       cy.xpath(this.anywhereCheckbox)
       .should('be.visible')
       .click()
       cy.xpath(this.inviteBtn).scrollIntoView()
       .click()
       .wait(5000)
-      cy.xpath(this.checkbox)
+      cy.xpath(this.searchClient)
+      .type('crew1 phoenix')
+      cy.xpath(this.goBtn)
       .click()
+      .wait(3000)
+      cy.xpath(this.checkbox)
+      .click('center','{ multiple: true } ')
       cy.xpath(this.assignBtn)
       .should('be.visible')
-      .click()
+      .click('center','{ multiple: true } ')
       cy.xpath(this.updateBtn)
       .should('be.visible')
       .click()
@@ -65,8 +73,8 @@ class CreateJob {
       cy.xpath(this.inviteBtn).scrollIntoView()
       .click()
       .wait(5000)
-      cy.xpath(this.checkbox)
-      .click()
+      cy.get('#preferred-only')
+      .click('{ force: true}')
       cy.xpath(this.makeOfferBtn)
       .click()
       cy.xpath(this.updateBtn)

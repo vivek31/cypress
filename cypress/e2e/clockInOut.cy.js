@@ -1,18 +1,20 @@
 import Login from '../pages/login'
 import CreateJobOrder from '../pages/createNewJobOrder'
 import CreateJob from '../pages/createJob';
+import Checkin  from '../pages/clockIn';
 
-describe('Assign a job', () => {
+describe('Click in time on confirmed job', () => {
     Cypress.on('uncaught:exception', () => {
       return false;
     });
-    it('Assign job', () => {
+    it('clock in time', () => {
 
-        cy.viewport(1400,850)  
+        cy.viewport(1400,900)  
 
         const login = new Login()
         const joborder = new CreateJobOrder()
         const job = new CreateJob()
+        const ch= new Checkin()
 
         const uuid = () => Cypress._.random(0, 1e4)
         const id = uuid()
@@ -24,5 +26,9 @@ describe('Assign a job', () => {
         login.actionVerifyLogInAsAdmin()
         joborder.actionCreateNewJobOrder(jobtitle)
         job.actionCreateNewJob()
+        job.actionAssignJob()
+        ch.actionSignout()
+        ch.actionLoginAsClient()
+        ch.actionClickIn()
     });
 });

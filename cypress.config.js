@@ -17,6 +17,7 @@ module.exports = defineConfig({
     },
     env: {
       "baseUrl": "https://trinity.minutecrew.com",
+      "baseUrl1": "https://trinity.minutecrew.com/time-clock",
        "username": "qa.admin",
        "password": "Nextcrew@1"
     }
