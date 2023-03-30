@@ -6,6 +6,9 @@ class Checkin {
     logoutBtn= "(//p[text()='Logout of site'])[1]";
     workspaceTab= "(//a[text()='WORKSPACE'])[1]";
     confirmedJob= "//div[text()='Confirmed']";
+    interestBtn= "(//button[text()='Interested'])[1]";
+    offerTab= "(//a[@id='sub-menu-link-offers'])[2]"
+    cancelbtn= "(//button[text()='Cancel'])[1]";
   
     actionSignout(){
       cy.log('Action: verify that user should be sign out from the application')
@@ -46,6 +49,30 @@ class Checkin {
       cy.xpath("//input[@data-answer='Yes']").click('center',' {force: true}')
       cy.xpath("//button[text()='NEXT']").click(' {force: true}')
       cy.xpath("//button[text()='OK']").click(' {force: true}')
+    }
+    actionLoginAsClient1(){
+      cy.log('Aciton: Login as Admin user')
+      cy.xpath(this.username)
+      .should('be.visible')
+      .clear()
+      .type('qa.client')
+      cy.xpath(this.password)
+      .should('be.visible')
+      .clear()
+      .type('Nextcrew@1')
+      cy.xpath(this.loginBtn)
+      .should('be.visible')
+      .click()  
+    }
+    actionInterest(){
+      cy.xpath(this.workspaceTab)
+      .click()
+      cy.xpath(this.offerTab)
+      .click()
+      cy.xpath(this.interestBtn)
+      .click()
+      cy.xpath(this.cancelbtn)
+      .click()
     }
 
   }

@@ -51,5 +51,16 @@ class Login {
       cy.xpath(this.verifyAdminRole)
       .should('include.text',' Admin')
     }
+    actionVerifyLogInAsClient(){
+      cy.log('Action: verify that user is log in as admin')
+      cy.xpath(this.profileDropdownIcon)
+      .should('be.visible')
+      .click()
+      cy.xpath(this.verifyDropdown)
+      .should('include.text','My Account')
+      cy.xpath(this.viewYourProfileBtn)
+      .should('be.visible')
+      .click()
+    }
   }
   export default Login;
